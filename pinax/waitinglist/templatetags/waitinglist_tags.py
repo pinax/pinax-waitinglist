@@ -1,6 +1,6 @@
 from django import template
 
-from waitinglist.forms import WaitingListEntryForm
+from ..forms import WaitingListEntryForm
 
 
 register = template.Library()
