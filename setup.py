@@ -11,9 +11,9 @@ def read(*parts):
 
 
 setup(
-    author="",
-    author_email="",
-    description="",
+    author="Pinax Team",
+    author_email="team@pinaxproject.com",
+    description="a Django waiting list app",
     name="pinax-waitinglist",
     long_description=read("README.rst"),
     version="0.1.0",
