@@ -61,7 +61,7 @@ class SurveyInstance(models.Model):
     code = models.CharField(max_length=200, unique=True)
 
     def generate_hash(self):
-        return hashlib.md5(self.entry.email + SURVEY_SECRET).hexdigest()
+        return hashlib.md5((self.entry.email + SURVEY_SECRET).encode("utf-8")).hexdigest()
 
     def save(self, *args, **kwargs):
         self.code = self.generate_hash()
