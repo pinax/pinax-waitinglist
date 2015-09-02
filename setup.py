@@ -16,12 +16,15 @@ setup(
     description="",
     name="pinax-waitinglist",
     long_description=read("README.rst"),
-    version="0.1",
+    version="0.1.0",
     url="http://github.com/pinax/pianx-waitinglist/",
     license="MIT",
     packages=find_packages(),
     package_data={
-        "waitinglist": []
+        "waitinglist": [
+            "templates/waitinglist/_list_signup.html",
+            "templates/waitinglist/_success.html"
+        ]
     },
     test_suite="runtests.runtests",
     tests_require=[
