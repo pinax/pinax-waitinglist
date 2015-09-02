@@ -1,4 +1,4 @@
-Pinax Starter App
+Pinax Waiting List
 =================
 
 .. image:: http://slack.pinaxproject.com/badge.svg
