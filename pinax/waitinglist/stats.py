@@ -2,7 +2,7 @@ import datetime
 
 from django.utils import timezone
 
-from waitinglist.models import WaitingListEntry
+from .models import WaitingListEntry
 
 
 def stats():
