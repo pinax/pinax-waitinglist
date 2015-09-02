@@ -1,7 +1,7 @@
 from django.test import TestCase
 
-from .forms import SurveyForm
-from .models import (
+from ..forms import SurveyForm
+from ..models import (
     Survey,
     SurveyQuestion,
     WaitingListEntry
