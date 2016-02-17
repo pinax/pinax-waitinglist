@@ -17,7 +17,7 @@ setup(
     name="pinax-waitinglist",
     long_description=read("README.rst"),
     version="0.1.0",
-    url="http://github.com/pinax/pianx-waitinglist/",
+    url="http://github.com/pinax/pinax-waitinglist/",
     license="MIT",
     packages=find_packages(),
     package_data={
