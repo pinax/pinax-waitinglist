@@ -18,7 +18,7 @@ Add `pinax-waitinglist` to your `INSTALLED_APPS` setting:
 
     INSTALLED_APPS = (
         # ...
-        "pinax.blog",
+        "pinax.waitinglist",
         # ...
     )
 
