@@ -10,6 +10,9 @@ A waiting list app for Django sites.
 
 ## Quickstart
 
+!!! note "Pinax Starter Projects"
+    Utilizing Pinax Starter Projects would offer the quickest way to get started. Additional information on getting up and running with a starter project can be found in the [Pinax Documentation](http://pinaxproject.com/pinax/pinax_starter_projects/).
+
 Install the development version:
 
     pip install pinax-waitinglist
