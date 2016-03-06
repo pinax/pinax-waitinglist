@@ -44,13 +44,14 @@ class SurveyForm(forms.Form):
         for question in self.survey.questions.all():
             answer = SurveyAnswer.objects.create(instance=instance, question=question)
             value = self.cleaned_data[question.name]
-            if question.kind == SurveyQuestion.RADIO_CHOICES:
-                answer.value = value.label
-            elif question.kind == SurveyQuestion.CHECKBOX_FIELD:
-                answer.value = ", ".join([x.label for x in value])
-            elif question.kind == SurveyQuestion.BOOLEAN_FIELD:
-                answer.value_boolean = value
-            else:
-                answer.value = value
+            if value:
+                if question.kind == SurveyQuestion.RADIO_CHOICES:
+                    answer.value = value.label
+                elif question.kind == SurveyQuestion.CHECKBOX_FIELD:
+                    answer.value = ", ".join([x.label for x in value])
+                elif question.kind == SurveyQuestion.BOOLEAN_FIELD:
+                    answer.value_boolean = value
+                else:
+                    answer.value = value
             answer.save()
         answered_survey.send(sender=self, instance=instance)
