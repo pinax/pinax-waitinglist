@@ -20,7 +20,7 @@ def ajax_list_signup(request):
         signed_up.send(sender=ajax_list_signup, entry=entry)
         try:
             data = {
-                "location": reverse("waitinglist_survey", args=[entry.surveyinstance.code])
+                "location": reverse("pinax_waitinglist:survey", args=[entry.surveyinstance.code])
             }
         except SurveyInstance.DoesNotExist:
             data = {
@@ -43,11 +43,11 @@ def list_signup(request, post_save_redirect=None):
             entry = form.save()
             signed_up.send(sender=list_signup, entry=entry)
             try:
-                post_save_redirect = reverse("waitinglist_survey", args=[entry.surveyinstance.code])
+                post_save_redirect = reverse("pinax_waitinglist:survey", args=[entry.surveyinstance.code])
             except SurveyInstance.DoesNotExist:
                 pass
             if post_save_redirect is None:
-                post_save_redirect = reverse("waitinglist_success")
+                post_save_redirect = reverse("pinax_waitinglist:success")
             if not post_save_redirect.startswith("/"):
                 post_save_redirect = reverse(post_save_redirect)
             return redirect(post_save_redirect)
@@ -65,7 +65,7 @@ def survey(request, code):
         form = SurveyForm(request.POST, survey=instance.survey)
         if form.is_valid():
             form.save(instance)
-            return redirect("waitinglist_thanks")
+            return redirect("pinax_waitinglist:thanks")
     else:
         form = SurveyForm(survey=instance.survey)
     return render(request, "pinax/waitinglist/survey.html", {"form": form})
