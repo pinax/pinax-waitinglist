@@ -4,8 +4,6 @@ from django import forms
 from django.conf import settings
 from django.db import models
 from django.db.models import Max
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 from django.template.defaultfilters import slugify
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
@@ -25,19 +23,6 @@ class WaitingListEntry(models.Model):
 
     def __unicode__(self):
         return self.email
-
-
-@receiver(post_save, sender=WaitingListEntry)
-def handle_waitinglistentry_save(sender, **kwargs):
-    if kwargs.get("created"):
-        try:
-            survey = Survey.objects.get(active=True)
-            SurveyInstance.objects.create(
-                survey=survey,
-                entry=kwargs.get("instance")
-            )
-        except Survey.DoesNotExist:
-            pass
 
 
 class Survey(models.Model):
