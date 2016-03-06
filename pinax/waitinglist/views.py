@@ -65,7 +65,7 @@ def survey(request, code):
         form = SurveyForm(request.POST, survey=instance.survey)
         if form.is_valid():
             form.save(instance)
-            return redirect("pinax_waitinglist:thanks")
+            return redirect("pinax_waitinglist:survey_thanks")
     else:
         form = SurveyForm(survey=instance.survey)
     return render(request, "pinax/waitinglist/survey.html", {"form": form})
