@@ -24,12 +24,12 @@ def ajax_list_signup(request):
             }
         except SurveyInstance.DoesNotExist:
             data = {
-                "html": render_to_string("waitinglist/_success.html", {
+                "html": render_to_string("pinax/waitinglist/_success.html", {
                 }, context_instance=RequestContext(request))
             }
     else:
         data = {
-            "html": render_to_string("waitinglist/_list_signup.html", {
+            "html": render_to_string("pinax/waitinglist/_list_signup.html", {
                 "form": form,
             }, context_instance=RequestContext(request))
         }
@@ -56,7 +56,7 @@ def list_signup(request, post_save_redirect=None):
     ctx = {
         "form": form,
     }
-    return render(request, "waitinglist/list_signup.html", ctx)
+    return render(request, "pinax/waitinglist/list_signup.html", ctx)
 
 
 def survey(request, code):
@@ -68,4 +68,4 @@ def survey(request, code):
             return redirect("waitinglist_thanks")
     else:
         form = SurveyForm(survey=instance.survey)
-    return render(request, "waitinglist/survey.html", {"form": form})
+    return render(request, "pinax/waitinglist/survey.html", {"form": form})
