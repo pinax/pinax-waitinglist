@@ -25,6 +25,18 @@ DEFAULT_SETTINGS = dict(
     SITE_ID=1,
     ROOT_URLCONF="pinax.waitinglist.tests.urls",
     SECRET_KEY="notasecret",
+    TEMPLATES=[
+        {
+            "BACKEND": "django.template.backends.django.DjangoTemplates",
+            "APP_DIRS": True,
+            "OPTIONS": {
+                "debug": True,
+                "context_processors": [
+                    "django.contrib.auth.context_processors.auth",
+                ]
+            }
+        },
+    ]
 )
 
 

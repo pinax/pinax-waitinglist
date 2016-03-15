@@ -29,6 +29,8 @@ setup(
     test_suite="runtests.runtests",
     tests_require=[
     ],
+    install_requires=[
+    ],
     classifiers=[
         "Development Status :: 4 - Beta",
         "Environment :: Web Environment",
