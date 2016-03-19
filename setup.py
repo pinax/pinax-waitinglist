@@ -28,6 +28,7 @@ setup(
     },
     test_suite="runtests.runtests",
     tests_require=[
+        "django-test-plus>=1.0.12",
     ],
     install_requires=[
     ],

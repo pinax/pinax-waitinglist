@@ -9,4 +9,4 @@ MANIFEST
 docs/_build/
 htmlcov/
 .python-version
-
+.eggs/

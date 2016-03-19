@@ -32,9 +32,16 @@ class WaitingListEntryForm(forms.ModelForm):
         self.fields["email"].label = ""
 
 
-class SurveyForm(forms.Form):
+class SurveyForm(forms.ModelForm):
+
+    class Meta:
+        model = SurveyQuestion
+        fields = []  # no automatic validation required
 
     def __init__(self, *args, **kwargs):
+        """
+        Build form fields on the fly.
+        """
         self.survey = kwargs.pop("survey")
         super(SurveyForm, self).__init__(*args, **kwargs)
         for question in self.survey.questions.all():
