@@ -1,14 +1,24 @@
-import json
-
-from django.core.urlresolvers import reverse
-from django.http import HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
+from django.core.urlresolvers import reverse, reverse_lazy
+from django.http import (
+    HttpResponseRedirect,
+    JsonResponse,
+)
 from django.template import RequestContext
 from django.template.loader import render_to_string
 from django.views.decorators.http import require_POST
+from django.views.generic import (
+    CreateView,
+    UpdateView,
+)
 
-from .forms import WaitingListEntryForm, SurveyForm
-from .models import SurveyInstance
+from .forms import (
+    SurveyForm,
+    WaitingListEntryForm,
+)
+from .models import (
+    SurveyInstance,
+    WaitingListEntry,
+)
 from .signals import signed_up
 
 
@@ -33,39 +43,54 @@ def ajax_list_signup(request):
                 "form": form,
             }, context_instance=RequestContext(request))
         }
-    return HttpResponse(json.dumps(data), content_type="application/json")
+    return JsonResponse(data)
 
 
-def list_signup(request, post_save_redirect=None):
-    if request.method == "POST":
-        form = WaitingListEntryForm(request.POST)
-        if form.is_valid():
-            entry = form.save()
-            signed_up.send(sender=list_signup, entry=entry)
-            try:
-                post_save_redirect = reverse("pinax_waitinglist:survey", args=[entry.surveyinstance.code])
-            except SurveyInstance.DoesNotExist:
-                pass
-            if post_save_redirect is None:
-                post_save_redirect = reverse("pinax_waitinglist:success")
-            if not post_save_redirect.startswith("/"):
-                post_save_redirect = reverse(post_save_redirect)
-            return redirect(post_save_redirect)
-    else:
-        form = WaitingListEntryForm()
-    ctx = {
-        "form": form,
-    }
-    return render(request, "pinax/waitinglist/list_signup.html", ctx)
+class ListSignupView(CreateView):
+    """
+    Add email address to signup list.
+    """
+    model = WaitingListEntry
+    form_class = WaitingListEntryForm
+    template_name = "pinax/waitinglist/list_signup.html"
+
+    def form_valid(self, form):
+        self.object = form.save()
+        signed_up.send(sender=self, entry=self.object)
+        return HttpResponseRedirect(self.get_success_url())
+
+    def get_success_url(self):
+        try:
+            success_url = reverse(
+                "pinax_waitinglist:survey",
+                args=[self.object.surveyinstance.code]
+            )
+        except SurveyInstance.DoesNotExist:
+            pass
+
+        if success_url is None:
+            success_url = reverse("pinax_waitinglist:success")
+        elif not success_url.startswith("/"):
+            success_url = reverse(success_url)
+        return success_url
 
 
-def survey(request, code):
-    instance = get_object_or_404(SurveyInstance, code=code)
-    if request.method == "POST":
-        form = SurveyForm(request.POST, survey=instance.survey)
-        if form.is_valid():
-            form.save(instance)
-            return redirect("pinax_waitinglist:survey_thanks")
-    else:
-        form = SurveyForm(survey=instance.survey)
-    return render(request, "pinax/waitinglist/survey.html", {"form": form})
+class SurveyView(UpdateView):
+    """
+    Show a survey form or POST survey answers.
+    """
+    model = SurveyInstance
+    form_class = SurveyForm
+    slug_url_kwarg = "code"
+    slug_field = "code"
+    template_name = "pinax/waitinglist/survey.html"
+    success_url = reverse_lazy("pinax_waitinglist:survey_thanks")
+
+    def get_form_kwargs(self):
+        kwargs = super(SurveyView, self).get_form_kwargs()
+        kwargs.update({"survey": self.object.survey})
+        return kwargs
+
+    def form_valid(self, form):
+        form.save(self.object)
+        return HttpResponseRedirect(self.get_success_url())
