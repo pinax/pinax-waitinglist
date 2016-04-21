@@ -60,6 +60,8 @@ class ListSignupView(CreateView):
         return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
+        success_url = None
+
         try:
             success_url = reverse(
                 "pinax_waitinglist:survey",
