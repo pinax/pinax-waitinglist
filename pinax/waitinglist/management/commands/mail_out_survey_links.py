@@ -25,9 +25,9 @@ class Command(BaseCommand):
                 "site": site,
                 "protocol": protocol,
             }
-            subject = render_to_string("waitinglist/survey_invite_subject.txt", ctx)
+            subject = render_to_string("pinax/waitinglist/survey_invite_subject.txt", ctx)
             subject = subject.strip()
-            message = render_to_string("waitinglist/survey_invite_body.txt", ctx)
+            message = render_to_string("pinax/waitinglist/survey_invite_body.txt", ctx)
             EmailMessage(
                 subject,
                 message,
