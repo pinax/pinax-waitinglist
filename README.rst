@@ -28,12 +28,16 @@ This collection can be found at http://pinaxproject.com.
 
 This app was developed as part of the Pinax ecosystem but is just a Django app and can be used independently of other Pinax apps.
 
+
 pinax-waitinglist
 -----------------
 
 ``pinax-waitinglist`` is an app for Django sites for collecting user emails on
 a waiting list before a site has launched. It also provides basic survey
 capabilities to gather information from your potential users.
+
+For an out-of-the-box Django project already set up with ``pinax-waitinglist``
+and Bootstrap templates, see the Pinax ``waitinglist`` starter project.
 
 
 Running the Tests
