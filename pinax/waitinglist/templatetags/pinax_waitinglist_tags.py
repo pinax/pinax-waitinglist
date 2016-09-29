@@ -6,8 +6,8 @@ from ..forms import WaitingListEntryForm
 register = template.Library()
 
 
-@register.assignment_tag
-def waitinglist_entry_form():
+@register.simple_tag(takes_context=True)
+def waitinglist_entry_form(context):
     """
     Get a (new) form object to post a new comment.
 
@@ -16,4 +16,10 @@ def waitinglist_entry_form():
         {% waitinglist_entry_form as [varname] %}
 
     """
-    return WaitingListEntryForm()
+    initial = {}
+    if "request" in context:
+        initial.update({
+            "referrer": context["request"].META.get("HTTP_REFERER", ""),
+            "campaign": context["request"].GET.get("wlc", "")
+        })
+    return WaitingListEntryForm(initial=initial)
