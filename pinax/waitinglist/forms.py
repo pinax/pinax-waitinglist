@@ -6,8 +6,8 @@ from .signals import answered_survey
 
 class WaitingListEntryForm(forms.ModelForm):
 
-    campaign = forms.CharField(required=False, widget=HiddenInput())
-    referrer = forms.CharField(required=False, widget=HiddenInput())
+    referrer = forms.CharField(required=False, widget=forms.HiddenInput())
+    campaign = forms.CharField(required=False, widget=forms.HiddenInput())
 
     class Meta:
         model = WaitingListEntry
