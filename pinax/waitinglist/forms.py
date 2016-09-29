@@ -6,10 +6,15 @@ from .signals import answered_survey
 
 class WaitingListEntryForm(forms.ModelForm):
 
+    campaign = forms.HiddenInput(required=False)
+    referrer = forms.HiddenInput(required=False)
+
     class Meta:
         model = WaitingListEntry
         fields = [
-            "email"
+            "email",
+            "campaign",
+            "referrer"
         ]
 
     def clean_email(self):

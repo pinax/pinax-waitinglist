@@ -54,6 +54,14 @@ class ListSignupView(CreateView):
     form_class = WaitingListEntryForm
     template_name = "pinax/waitinglist/list_signup.html"
 
+    def get_initial(self):
+        initial = super(ListSignupView, self).get_initial()
+        initial.update({
+            "referrer": self.request.META.get("HTTP_REFERER", ""),
+            "campaign": self.request.GET.get("wlc", "")
+        })
+        return initial
+
     def form_valid(self, form):
         self.object = form.save()
         signed_up.send(sender=self, entry=self.object)

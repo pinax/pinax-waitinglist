@@ -16,6 +16,8 @@ class WaitingListEntry(models.Model):
 
     email = models.EmailField(_("email address"), unique=True)
     created = models.DateTimeField(_("created"), default=timezone.now, editable=False)
+    referrer = models.TextField(blank=True)
+    campaign = models.TextField(blank=True)
 
     class Meta:
         verbose_name = _("waiting list entry")

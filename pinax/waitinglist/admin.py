@@ -12,7 +12,8 @@ from .models import (
 
 class WaitingListEntryAdmin(admin.ModelAdmin):
 
-    list_display = ["email", "created"]
+    list_display = ["email", "created", "referrer", "campaign"]
+    list_filter = ["referrer", "campaign", "created"]
     search_fields = ["email"]
 
 
