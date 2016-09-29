@@ -1,5 +1,9 @@
 # ChangeLog
 
+## 1.3.0
+
+- added campaign tracking
+- added referral tracking
 
 ## 1.2.0
 

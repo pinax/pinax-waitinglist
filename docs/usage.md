@@ -143,3 +143,14 @@ Add `survey_invite_body.txt` template:
 Send survey emails:
 
     python manage.py mail_out_survey_links
+
+
+## Campaigns and Referrals
+
+Campaigns work by just taking the querystring parameter `wlc` if present in querystring and records
+the value to the waitinglist entry.  This is useful if you want to track conversions of a particular
+ad campaign.  You can set, for instance, https://mysite.com/?wlc=c1, as the url for the ad. when
+people click on the ad, and signup, `c1` will be added to their entry and is viewable in the admin.
+
+Referrals work the same as campaigns but work automatically.  If there a value in `request.META["HTTP_REFERER"]`
+when landing on the signup page, the value will get required in the `referral` field of the waitinglist entry.
