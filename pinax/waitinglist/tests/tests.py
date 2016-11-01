@@ -84,6 +84,9 @@ class SurveyFormTests(SurveyTestCase):
         form = SurveyForm(survey=self.survey)
         self.assertTrue(len(form.fields), 5)
 
+    def test_survey_strings(self):
+        self.assertEqual(str(self.summer), "Summer")
+
     def test_survey_form_invalid(self):
         form = SurveyForm(
             data={
