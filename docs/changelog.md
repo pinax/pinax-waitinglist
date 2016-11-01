@@ -1,5 +1,9 @@
 # ChangeLog
 
+## 1.3.1
+
+- fixed problem with survey choices in Python 3
+
 ## 1.3.0
 
 - added campaign tracking

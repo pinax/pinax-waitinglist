@@ -16,7 +16,7 @@ setup(
     description="a Django waiting list app",
     name="pinax-waitinglist",
     long_description=read("README.rst"),
-    version="1.3.0",
+    version="1.3.1",
     url="http://github.com/pinax/pinax-waitinglist/",
     license="MIT",
     packages=find_packages(),
