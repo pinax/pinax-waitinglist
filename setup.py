@@ -8,21 +8,21 @@ LONG_DESCRIPTION = """
 Pinax Waiting List
 =================
 
-.. image:: https://img.shields.io/pypi/v/waitinglist.svg
-    :target: https://pypi.python.org/pypi/waitinglist/
+.. image:: https://img.shields.io/pypi/v/pinax-waitinglist.svg
+    :target: https://pypi.python.org/pypi/pinax-waitinglist/
 .. image:: https://img.shields.io/badge/license-MIT-blue.svg
-    :target: https://pypi.python.org/pypi/waitinglist/
+    :target: https://pypi.python.org/pypi/pinax-waitinglist/
 
-.. image:: https://img.shields.io/circleci/project/github/pinax/waitinglist.svg
-    :target: https://circleci.com/gh/pinax/waitinglist
-.. image:: https://img.shields.io/codecov/c/github/pinax/waitinglist.svg
-    :target: https://codecov.io/gh/pinax/waitinglist
-.. image:: https://img.shields.io/github/contributors/pinax/waitinglist.svg
-    :target: https://github.com/pinax/waitinglist/graphs/contributors
-.. image:: https://img.shields.io/github/issues-pr/pinax/waitinglist.svg
-    :target: https://github.com/pinax/waitinglist/pulls
-.. image:: https://img.shields.io/github/issues-pr-closed/pinax/waitinglist.svg
-    :target: https://github.com/pinax/waitinglist/pulls?q=is%3Apr+is%3Aclosed
+.. image:: https://img.shields.io/circleci/project/github/pinax/pinax-waitinglist.svg
+    :target: https://circleci.com/gh/pinax/pinax-waitinglist
+.. image:: https://img.shields.io/codecov/c/github/pinax/pinax-waitinglist.svg
+    :target: https://codecov.io/gh/pinax/pinax-waitinglist
+.. image:: https://img.shields.io/github/contributors/pinax/pinax-waitinglist.svg
+    :target: https://github.com/pinax/pinax-waitinglist/graphs/contributors
+.. image:: https://img.shields.io/github/issues-pr/pinax/pinax-waitinglist.svg
+    :target: https://github.com/pinax/pinax-waitinglist/pulls
+.. image:: https://img.shields.io/github/issues-pr-closed/pinax/pinax-waitinglist.svg
+    :target: https://github.com/pinax/pinax-waitinglist/pulls?q=is%3Apr+is%3Aclosed
 
 .. image:: http://slack.pinaxproject.com/badge.svg
     :target: http://slack.pinaxproject.com/
