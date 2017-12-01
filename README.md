@@ -20,6 +20,12 @@ A waiting list app for Django sites.
     To learn more about Pinax, see <http://pinaxproject.com/>
 
 
+### Supported Django and Python Versions
+
+* Django 1.8, 1.10, 1.11, and 2.0
+* Python 2.7, 3.4, 3.5, and 3.6
+
+
 ## Quickstart
 
 !!! note "Pinax Starter Projects"
