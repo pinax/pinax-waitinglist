@@ -294,6 +294,14 @@ Provides argument `entry` (`WaitingListEntry` instance).
 
 ## ChangeLog
 
+### 2.0.0
+
+* Add Django 2.0 compatibility testing
+* Drop Django 1.9 and Python 3.3 support
+* Convert CI and coverage to CircleCi and CodeCov
+* Add PyPi-compatible long description
+* Move documentation to README.md
+
 ### 1.3.1
 
 - fixed problem with survey choices in Python 3
