@@ -1,4 +1,4 @@
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from ..forms import SurveyForm
 from ..models import Survey, SurveyAnswer, SurveyQuestion, WaitingListEntry

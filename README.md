@@ -1,35 +1,56 @@
 # Pinax Waiting List
 
-[![](http://slack.pinaxproject.com/badge.svg)](http://slack.pinaxproject.com/)
-
 [![CircleCi](https://img.shields.io/circleci/project/github/pinax/pinax-waitinglist.svg)](https://circleci.com/gh/pinax/pinax-waitinglist)
 [![Codecov](https://img.shields.io/codecov/c/github/pinax/pinax-waitinglist.svg)](https://codecov.io/gh/pinax/pinax-waitinglist)
 [![](https://img.shields.io/pypi/dm/pinax-waitinglist.svg)](https://pypi.python.org/pypi/pinax-waitinglist/)
 [![](https://img.shields.io/pypi/v/pinax-waitinglist.svg)](https://pypi.python.org/pypi/pinax-waitinglist/)
-[![](https://img.shields.io/badge/license-MIT-blue.svg)](https://pypi.python.org/pypi/pinax-waitinglist/)
+
+[![](http://slack.pinaxproject.com/badge.svg)](http://slack.pinaxproject.com/)
+[![](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
+## Table of Contents
+
+* [About Pinax](#about-pinax)
+* [Overview](#overview)
+  * [Supported Django and Python versions](#supported-django-and-python-versions)
+* [Documentation](#documentation)
+  * [Installation](#installation)
+  * [Settings](#settings)
+  * [Usage](#usage)
+  * [Reference](#reference)  
+* [Change Log](#change-log)
+* [Contribute](#contribute)
+* [Code of Conduct](#code-of-conduct)
+* [Connect with Pinax](#connect-with-pinax)
+* [License](#license)
+  
+## About Pinax
+
+Pinax is an open-source platform built on the Django Web Framework. It is an ecosystem of reusable Django apps, themes, and starter project templates. This collection can be found at http://pinaxproject.com.
 
 
 ## pinax-waitinglist
 
-A waiting list app for Django sites.
+``pinax-waitinglist`` is an app for Django sites for collecting user emails on
+a waiting list before a site has launched. It also provides basic survey
+capabilities to gather information from your potential users.
 
-!!! note "Pinax Ecosystem"
-    This app was developed as part of the Pinax ecosystem but is just a Django app
-    and can be used independently of other Pinax apps.
-    
-    To learn more about Pinax, see <http://pinaxproject.com/>
+For an out-of-the-box Django project already set up with ``pinax-waitinglist``
+and Bootstrap templates, see the Pinax ``waitinglist`` starter project.
+
+### Overview
+
+#### Supported Django and Python versions
+
+Django \ Python | 2.7 | 3.4 | 3.5 | 3.6
+--------------- | --- | --- | --- | ---
+1.11 |  *  |  *  |  *  |  *  
+2.0  |     |  *  |  *  |  *
 
 
-### Supported Django and Python Versions
+## Documentation
 
-* Django 1.8, 1.10, 1.11, and 2.0
-* Python 2.7, 3.4, 3.5, and 3.6
-
-
-## Quickstart
-
-!!! note "Pinax Starter Projects"
-    Utilizing Pinax Starter Projects would offer the quickest way to get started. Additional information on getting up and running with a starter project can be found in the [Pinax Documentation](http://pinaxproject.com/pinax/pinax_starter_projects/).
+### Installation
 
 Install the development version:
 
@@ -51,20 +72,6 @@ Add entry to your `urls.py`:
 
     url(r"^waitinglist/", include("pinax.waitinglist.urls"))
 
-
-## Finding Help
-
-The primary place to find a helpful hand would be in our [Slack](http://slack.pinaxproject.com/)
-instance. Ask around in `#general` or `#pinax-waitinglist` channels there if you
-need anything at all.
-
-If you think you encountered a bug, either in the code, or in the docs (after
-all, if something is not clear in the docs, then it should be considered a
-bug in the documentation, most of the time), then please [file an issue](https://github.com/pinax/pinax-waitinglist/issues) with the project.
-
-
-## Settings & Configuration
-
 ### Settings
 
 #### WAITINGLIST_SURVEY_SECRET
@@ -79,10 +86,9 @@ Defaults to `HTTP`
 
 Provided as context in certain emails for URL building.
 
+### Usage
 
-## Usage
-
-### List Signup
+#### List Signup
 
 The most basic usage would be to direct users to a page where they can provide their email address to be notified of updates:
 
@@ -164,7 +170,7 @@ Add a success template `success.html`:
     </div>
     [...]
 
-### Survey
+#### Survey
 
 If you would like to offer a survey after users enter their email:
 
@@ -202,7 +208,7 @@ Add `survey.html` template:
     </div>
     [...]
 
-### Email Survey to existing emails
+#### Email Survey to existing emails
 
 Existing emails can be emailed surveys through a django command, `mail_out_survey_links`
 .
@@ -227,7 +233,7 @@ Send survey emails:
     python manage.py mail_out_survey_links
 
 
-### Campaigns and Referrals
+#### Campaigns and Referrals
 
 Campaigns work by just taking the querystring parameter `wlc` if present in querystring and records
 the value to the waitinglist entry.  This is useful if you want to track conversions of a particular
@@ -238,9 +244,9 @@ Referrals work the same as campaigns but work automatically.  If there a value i
 when landing on the signup page, the value will get required in the `referral` field of the waitinglist entry.
 
 
-## Reference
+### Reference
 
-### Management Commands
+#### Management Commands
 
 ##### waitinglist.management.commands.mail_out_survey_links
 
@@ -248,7 +254,7 @@ Email links to survey instances for those that never saw a survey. Retrieves the
 
 Uses templates `waitinglist/survey_invite_subject.txt` & `waitinglist/survey_invite_body.txt` for emails.
 
-### Templates
+#### Templates
 
 All the templates for this app should be located in the subfolder `waitinglist/` in your template search path.
 
@@ -284,7 +290,7 @@ Rendered by `mail_out_survey_links` command and gets passed `instance` (`SurveyI
 
 Rendered by `django.views.generic.TemplateView`.
 
-### Signals
+#### Signals
 
 ##### waitinglist.signals.answered_survey
 
@@ -298,12 +304,13 @@ Triggered when a user signs up through `ajax_list_signup` or `list_signup` views
 
 Provides argument `entry` (`WaitingListEntry` instance).
 
+
 ## ChangeLog
 
 ### 2.0.0
 
 * Add Django 2.0 compatibility testing
-* Drop Django 1.9 and Python 3.3 support
+* Drop Django 1.8, 1.9, 1.10 and Python 3.3 support
 * Convert CI and coverage to CircleCi and CodeCov
 * Add PyPi-compatible long description
 * Move documentation to README.md
@@ -330,56 +337,32 @@ Provides argument `entry` (`WaitingListEntry` instance).
 - don't show empty label in radio choice survey questions
 
 
-## Pinax
-
-Pinax is an open-source platform built on the Django Web Framework. It is an ecosystem of reusable Django apps, themes, and starter project templates.
-This collection can be found at http://pinaxproject.com.
-
-This app was developed as part of the Pinax ecosystem but is just a Django app and can be used independently of other Pinax apps.
-
-
-## pinax-waitinglist
-
-``pinax-waitinglist`` is an app for Django sites for collecting user emails on
-a waiting list before a site has launched. It also provides basic survey
-capabilities to gather information from your potential users.
-
-For an out-of-the-box Django project already set up with ``pinax-waitinglist``
-and Bootstrap templates, see the Pinax ``waitinglist`` starter project.
-
-
-## Running the Tests
-
-    ::
-
-       $ pip install detox
-       $ detox
-
-
-## Documentation
-
-The beginnings of documentation for ``pinax-waitinglist`` can be found under
-the ``docs/`` folder.
-
-If you would like to help us write documentation, please join our Pinax Project
-Slack team and let us know! The Pinax documentation is available at
-http://pinaxproject.com/pinax/.
-
-
 ## Contribute
 
-See this blog post http://blog.pinaxproject.com/2016/02/26/recap-february-pinax-hangout/ including a video, or our How to Contribute (http://pinaxproject.com/pinax/how_to_contribute/) section for an overview on how contributing to Pinax works. For concrete contribution ideas, please see our Ways to Contribute/What We Need Help With (http://pinaxproject.com/pinax/ways_to_contribute/) section.
+For an overview on how contributing to Pinax works read this [blog post](http://blog.pinaxproject.com/2016/02/26/recap-february-pinax-hangout/)
+and watch the included video, or read our [How to Contribute](http://pinaxproject.com/pinax/how_to_contribute/) section.
+For concrete contribution ideas, please see our
+[Ways to Contribute/What We Need Help With](http://pinaxproject.com/pinax/ways_to_contribute/) section.
 
-In case of any questions we recommend you join our Pinax Slack team (http://slack.pinaxproject.com) and ping us there instead of creating an issue on GitHub. Creating issues on GitHub is of course also valid but we are usually able to help you faster if you ping us in Slack.
+In case of any questions we recommend you join our [Pinax Slack team](http://slack.pinaxproject.com)
+and ping us there instead of creating an issue on GitHub. Creating issues on GitHub is of course
+also valid but we are usually able to help you faster if you ping us in Slack.
 
-We also highly recommend reading our Open Source and Self-Care blog post (http://blog.pinaxproject.com/2016/01/19/open-source-and-self-care/).
-
+We also highly recommend reading our blog post on [Open Source and Self-Care](http://blog.pinaxproject.com/2016/01/19/open-source-and-self-care/).
 
 ## Code of Conduct
 
-In order to foster a kind, inclusive, and harassment-free community, the Pinax Project has a code of conduct, which can be found here  http://pinaxproject.com/pinax/code_of_conduct/. We ask you to treat everyone as a smart human programmer that shares an interest in Python, Django, and Pinax with you.
+In order to foster a kind, inclusive, and harassment-free community, the Pinax Project
+has a [code of conduct](http://pinaxproject.com/pinax/code_of_conduct/).
+We ask you to treat everyone as a smart human programmer that shares an interest in Python, Django, and Pinax with you.
 
 
-## Pinax Project Blog and Twitter
+## Connect with Pinax
 
-For updates and news regarding the Pinax Project, please follow us on Twitter at @pinaxproject and check out our blog http://blog.pinaxproject.com.
+For updates and news regarding the Pinax Project, please follow us on Twitter [@pinaxproject](https://twitter.com/pinaxproject)
+and check out our [Pinax Project blog](http://blog.pinaxproject.com).
+
+
+## License
+
+Copyright (c) 2012-2018 James Tauber and contributors under the [MIT license](https://opensource.org/licenses/MIT).

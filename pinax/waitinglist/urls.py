@@ -3,6 +3,8 @@ from django.views.generic import TemplateView
 
 from . import views
 
+app_name = "pinax_waitinglist"
+
 urlpatterns = [
     url(r"^list_signup/$", views.ListSignupView.as_view(), name="list_signup"),
     url(r"^ajax_list_signup/$", views.ajax_list_signup, name="ajax_list_signup"),
