@@ -1,5 +1,7 @@
 # Pinax Waiting List
 
+[![](https://img.shields.io/pypi/v/pinax-waitinglist.svg)](https://pypi.python.org/pypi/pinax-waitinglist/)
+
 [![CircleCi](https://img.shields.io/circleci/project/github/pinax/pinax-waitinglist.svg)](https://circleci.com/gh/pinax/pinax-waitinglist)
 [![Codecov](https://img.shields.io/codecov/c/github/pinax/pinax-waitinglist.svg)](https://codecov.io/gh/pinax/pinax-waitinglist)
 [![](https://img.shields.io/github/contributors/pinax/pinax-waitinglist.svg)](https://github.com/pinax/pinax-waitinglist/graphs/contributors)
