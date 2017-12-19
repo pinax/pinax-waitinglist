@@ -68,9 +68,13 @@ Run migrations:
 
     python manage.py migrate
 
-Add entry to your `urls.py`:
+Add `pinax.waitinglist.urls` to your project urlpatterns:
 
-    url(r"^waitinglist/", include("pinax.waitinglist.urls"))
+    urlpatterns = [
+        ...
+        url(r"^waitinglist/", include("pinax.waitinglist.urls", namespace="pinax_waitinglist"))
+        ...
+    ]
 
 ### Settings
 
