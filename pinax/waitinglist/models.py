@@ -45,8 +45,8 @@ class Survey(models.Model):
 
 class SurveyInstance(models.Model):
 
-    survey = models.ForeignKey(Survey, related_name="instances")
-    entry = models.OneToOneField(WaitingListEntry)
+    survey = models.ForeignKey(Survey, related_name="instances", on_delete=models.CASCADE)
+    entry = models.OneToOneField(WaitingListEntry, on_delete=models.CASCADE)
     code = models.CharField(max_length=200, unique=True)
 
     def generate_hash(self):
@@ -73,7 +73,7 @@ class SurveyQuestion(models.Model):
         (BOOLEAN_FIELD, "boolean field")
     ]
 
-    survey = models.ForeignKey(Survey, related_name="questions")
+    survey = models.ForeignKey(Survey, related_name="questions", on_delete=models.CASCADE)
     question = models.TextField()
     kind = models.IntegerField(choices=FIELD_TYPE_CHOICES)
     help_text = models.TextField(blank=True)
@@ -123,7 +123,7 @@ class SurveyQuestion(models.Model):
 
 @python_2_unicode_compatible
 class SurveyQuestionChoice(models.Model):
-    question = models.ForeignKey(SurveyQuestion, related_name="choices")
+    question = models.ForeignKey(SurveyQuestion, related_name="choices", on_delete=models.CASCADE)
     label = models.CharField(max_length=100)
 
     def __str__(self):
@@ -132,8 +132,8 @@ class SurveyQuestionChoice(models.Model):
 
 class SurveyAnswer(models.Model):
 
-    instance = models.ForeignKey(SurveyInstance, related_name="answers")
-    question = models.ForeignKey(SurveyQuestion, related_name="answers")
+    instance = models.ForeignKey(SurveyInstance, related_name="answers", on_delete=models.CASCADE)
+    question = models.ForeignKey(SurveyQuestion, related_name="answers", on_delete=models.CASCADE)
     value = models.TextField(blank=True)
     value_boolean = models.NullBooleanField(blank=True)
     created = models.DateTimeField(_("created"), default=timezone.now, editable=False)

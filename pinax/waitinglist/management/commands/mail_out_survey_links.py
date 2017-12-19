@@ -1,11 +1,10 @@
 from django.conf import settings
+from django.contrib.sites.models import Site
 from django.core.mail import EmailMessage
 from django.core.management.base import BaseCommand
 from django.template.loader import render_to_string
 
-from django.contrib.sites.models import Site
-
-from ...models import WaitingListEntry, Survey
+from ...models import Survey, WaitingListEntry
 
 
 class Command(BaseCommand):

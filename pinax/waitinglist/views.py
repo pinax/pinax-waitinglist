@@ -1,24 +1,12 @@
-from django.core.urlresolvers import reverse, reverse_lazy
-from django.http import (
-    HttpResponseRedirect,
-    JsonResponse,
-)
+from django.http import HttpResponseRedirect, JsonResponse
 from django.template import RequestContext
 from django.template.loader import render_to_string
+from django.urls import reverse, reverse_lazy
 from django.views.decorators.http import require_POST
-from django.views.generic import (
-    CreateView,
-    UpdateView,
-)
+from django.views.generic import CreateView, UpdateView
 
-from .forms import (
-    SurveyForm,
-    WaitingListEntryForm,
-)
-from .models import (
-    SurveyInstance,
-    WaitingListEntry,
-)
+from .forms import SurveyForm, WaitingListEntryForm
+from .models import SurveyInstance, WaitingListEntry
 from .signals import signed_up
 
 

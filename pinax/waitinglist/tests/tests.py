@@ -1,13 +1,8 @@
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
-from .test import TestCase
 from ..forms import SurveyForm
-from ..models import (
-    Survey,
-    SurveyAnswer,
-    SurveyQuestion,
-    WaitingListEntry
-)
+from ..models import Survey, SurveyAnswer, SurveyQuestion, WaitingListEntry
+from .test import TestCase
 
 
 class SurveyTestCase(TestCase):
