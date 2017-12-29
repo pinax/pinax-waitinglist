@@ -312,7 +312,7 @@ Triggered when a user signs up through `ajax_list_signup` or `list_signup` views
 Provides argument `entry` (`WaitingListEntry` instance).
 
 
-## ChangeLog
+## Change Log
 
 ### 2.0.1
 
