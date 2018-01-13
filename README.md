@@ -1,3 +1,6 @@
+![](http://pinaxproject.com/pinax-design/patches/pinax-waitinglist.svg)
+
+
 # Pinax Waiting List
 
 [![](https://img.shields.io/pypi/v/pinax-waitinglist.svg)](https://pypi.python.org/pypi/pinax-waitinglist/)
