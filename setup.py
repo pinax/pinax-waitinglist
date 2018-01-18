@@ -1,5 +1,6 @@
 from setuptools import find_packages, setup
 
+VERSION = "2.0.2"
 LONG_DESCRIPTION = """
 .. image:: http://pinaxproject.com/pinax-design/patches/pinax-waitinglist.svg
     :target: https://pypi.python.org/pypi/pinax-waitinglist/
@@ -55,7 +56,7 @@ setup(
     description="a Django waiting list app",
     name="pinax-waitinglist",
     long_description=LONG_DESCRIPTION,
-    version="2.0.1",
+    version=VERSION,
     url="http://github.com/pinax/pinax-waitinglist/",
     license="MIT",
     packages=find_packages(),
@@ -67,9 +68,10 @@ setup(
     },
     test_suite="runtests.runtests",
     tests_require=[
-        "django-test-plus>=1.0.12",
+        "django-test-plus>=1.0.22",
     ],
     install_requires=[
+        "django>=1.11",
     ],    
     classifiers=[
         "Development Status :: 5 - Production/Stable",

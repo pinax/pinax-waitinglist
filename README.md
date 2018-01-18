@@ -60,27 +60,33 @@ Django \ Python | 2.7 | 3.4 | 3.5 | 3.6
 
 Install the development version:
 
-    pip install pinax-waitinglist
+```commandline
+$ pip install pinax-waitinglist
+```
 
 Add `pinax-waitinglist` to your `INSTALLED_APPS` setting:
 
-    INSTALLED_APPS = (
-        # ...
-        "pinax.waitinglist",
-        # ...
-    )
+```python
+INSTALLED_APPS = (
+    # other apps
+    "pinax.waitinglist",
+)
+```
 
 Run migrations:
 
-    python manage.py migrate
+```commandline
+$ python manage.py migrate
+```
 
 Add `pinax.waitinglist.urls` to your project urlpatterns:
 
-    urlpatterns = [
-        ...
-        url(r"^waitinglist/", include("pinax.waitinglist.urls", namespace="pinax_waitinglist"))
-        ...
-    ]
+```python
+urlpatterns = [
+    # other urls
+    url(r"^waitinglist/", include("pinax.waitinglist.urls", namespace="pinax_waitinglist")),
+]
+```
 
 ### Settings
 
@@ -104,81 +110,87 @@ The most basic usage would be to direct users to a page where they can provide t
 
 Add a TemplateView for a landing page to your `urls.py`:
 
-    # project/urls.py
-    from django.views.generic import TemplateView
+```python
+# project/urls.py
 
-    urlpatterns = [
-        [...]
-        url(r"^$", TemplateView.as_view(template_name="waitinglist/list_signup.html"), name="home"),
-    ]
+from django.views.generic import TemplateView
+
+urlpatterns = [
+    # other urls
+    url(r"^$", TemplateView.as_view(template_name="waitinglist/list_signup.html"), name="home"),
+]
+```
 
 Update your template directories in `settings.py`:
 
-    # project/settings.py
-    TEMPLATES = [
-        {
-            [...]
-            'DIRS': [os.path.join(BASE_DIR, "templates"),],
-            [...]
-        },
-    ]
+```python
+# project/settings.py
+TEMPLATES = [
+    {
+        'DIRS': [
+            # other dirs
+            os.path.join(BASE_DIR, "templates"),
+        ],
+    },
+]
+```
 
 Add `list_signup.html` template:
 
-    <!-- templates/waitinglist/list_signup.html -->
+```djangotemplate
+<!-- templates/waitinglist/list_signup.html -->
 
-    [...]
-    <div class="site-wrapper-inner">
-        <div class="cover-container">
-            <div class="inner cover">
-                <h1 class="cover-heading">Sign up on our waiting list!</h1>
-                <p class="lead">
-                    Once this site is ready to launch, you will be emailed.
-                </p>
-                {% if form.email.errors %}
-                    <b>{{ form.email.errors.0 }}</b>
-                {% endif %}
-                {% url "waitinglist_list_signup" as url %}
-                <form method="POST" action="{{ url }}" class="form-inline">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label class="sr-only" for="id_email">Email address</label>
-                        <input type="email" name="email" class="form-control input-lg" id="id_email" placeholder="your@email.com">
-                    </div>
-                    <button class="btn btn-default btn-lg">Submit</button>
-                </form>
-            </div>
-            <div class="mastfoot">
-                <div class="inner">
-                    <p>{% include "_footer.html" %}</p>
+<div class="site-wrapper-inner">
+    <div class="cover-container">
+        <div class="inner cover">
+            <h1 class="cover-heading">Sign up on our waiting list!</h1>
+            <p class="lead">
+                Once this site is ready to launch, you will be emailed.
+            </p>
+            {% if form.email.errors %}
+                <b>{{ form.email.errors.0 }}</b>
+            {% endif %}
+            {% url "waitinglist_list_signup" as url %}
+            <form method="POST" action="{{ url }}" class="form-inline">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label class="sr-only" for="id_email">Email address</label>
+                    <input type="email" name="email" class="form-control input-lg" id="id_email" placeholder="your@email.com">
                 </div>
+                <button class="btn btn-default btn-lg">Submit</button>
+            </form>
+        </div>
+        <div class="mastfoot">
+            <div class="inner">
+                <p>{% include "_footer.html" %}</p>
             </div>
         </div>
     </div>
-    [...]
+</div>
+```
 
 Add a success template `success.html`:
 
-    <!-- templates/waitinglist/success.html -->
+```djangotemplate
+<!-- templates/waitinglist/success.html -->
 
-    [...]
-    <div class="site-wrapper-inner">
-        <div class="cover-container">
-            <div class="inner cover">
-                <h1 class="cover-heading">Thank you!</h1>
-                <p class="lead">You are on the list. We will notify you know when this site launches.</p>
-                <p>
-                    If you have any questions, feel free to email <a href="mailto:info@example.com"><b>info@example.com</b></a>.
-                </p>
-            </div>
-            <div class="mastfoot">
-                <div class="inner">
-                    <p>{% include "_footer.html" %}</p>
-                </div>
+<div class="site-wrapper-inner">
+    <div class="cover-container">
+        <div class="inner cover">
+            <h1 class="cover-heading">Thank you!</h1>
+            <p class="lead">You are on the list. We will notify you know when this site launches.</p>
+            <p>
+                If you have any questions, feel free to email <a href="mailto:info@example.com"><b>info@example.com</b></a>.
+            </p>
+        </div>
+        <div class="mastfoot">
+            <div class="inner">
+                <p>{% include "_footer.html" %}</p>
             </div>
         </div>
     </div>
-    [...]
+</div>
+```
 
 #### Survey
 
@@ -195,28 +207,28 @@ A survey will need to be created with one or more questions. Surveys and their q
 
 Add `survey.html` template:
 
-    <!-- templates/waitinglist/survey.html -->
+```djangotemplate
+<!-- templates/waitinglist/survey.html -->
 
-    [...]
-    <div class="site-wrapper-inner">
-        <div class="cover-container">
-            <div class="inner cover">
-                <h1 class="cover-heading">Survey</h1>
-                <p class="lead">Do you have a moment to answer a few qustions?</p>
-                <form>
-                    {% csrf_token %}
-                    {{ form }}
-                    <button type="submit" class="btn btn-default btn-lg">Submit</button>
-                </form>
-            </div>
-            <div class="mastfoot">
-                <div class="inner">
-                    <p>{% include "_footer.html" %}</p>
-                </div>
+<div class="site-wrapper-inner">
+    <div class="cover-container">
+        <div class="inner cover">
+            <h1 class="cover-heading">Survey</h1>
+            <p class="lead">Do you have a moment to answer a few qustions?</p>
+            <form>
+                {% csrf_token %}
+                {{ form }}
+                <button type="submit" class="btn btn-default btn-lg">Submit</button>
+            </form>
+        </div>
+        <div class="mastfoot">
+            <div class="inner">
+                <p>{% include "_footer.html" %}</p>
             </div>
         </div>
     </div>
-    [...]
+</div>
+```
 
 #### Email Survey to existing emails
 
@@ -227,20 +239,26 @@ A `SITE` object is passed to both of the following templates, if you haven't ena
 
 Add `survey_invite_subject.txt` template:
 
-    # templates/waitinglist/survey_invite_subject.txt
+```djangotemplate
+    {# templates/waitinglist/survey_invite_subject.txt #}
 
     Survey from {{ site.name }}
+```
 
 Add `survey_invite_body.txt` template:
 
-    # templates/waitinglist/survey_invite_body.txt
+```djangotemplate
+    {# templates/waitinglist/survey_invite_body.txt #}
 
     Please take a moment to complete a brief survey from Example.com:
     {{ protocol }}://www.{{ site.domain }}{% url 'waitinglist_survey' instance.code %}
+```
 
 Send survey emails:
 
-    python manage.py mail_out_survey_links
+```commandline
+$ python manage.py mail_out_survey_links
+```
 
 
 #### Campaigns and Referrals
@@ -316,6 +334,12 @@ Provides argument `entry` (`WaitingListEntry` instance).
 
 
 ## Change Log
+
+### 2.0.2
+
+* Update CI configuration
+* Remove docs build support
+* Improve documentation markup
 
 ### 2.0.1
 
