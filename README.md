@@ -1,6 +1,5 @@
 ![](http://pinaxproject.com/pinax-design/patches/pinax-waitinglist.svg)
 
-
 # Pinax Waiting List
 
 [![](https://img.shields.io/pypi/v/pinax-waitinglist.svg)](https://pypi.python.org/pypi/pinax-waitinglist/)
@@ -13,6 +12,7 @@
 
 [![](http://slack.pinaxproject.com/badge.svg)](http://slack.pinaxproject.com/)
 [![](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 
 ## Table of Contents
 
@@ -30,6 +30,7 @@
 * [Connect with Pinax](#connect-with-pinax)
 * [License](#license)
   
+  
 ## About Pinax
 
 Pinax is an open-source platform built on the Django Web Framework. It is an ecosystem of reusable Django apps, themes, and starter project templates. This collection can be found at http://pinaxproject.com.
@@ -37,14 +38,14 @@ Pinax is an open-source platform built on the Django Web Framework. It is an eco
 
 ## pinax-waitinglist
 
+### Overview
+
 ``pinax-waitinglist`` is an app for Django sites for collecting user emails on
 a waiting list before a site has launched. It also provides basic survey
 capabilities to gather information from your potential users.
 
 For an out-of-the-box Django project already set up with ``pinax-waitinglist``
 and Bootstrap templates, see the Pinax ``waitinglist`` starter project.
-
-### Overview
 
 #### Supported Django and Python versions
 
@@ -260,7 +261,6 @@ Send survey emails:
 $ python manage.py mail_out_survey_links
 ```
 
-
 #### Campaigns and Referrals
 
 Campaigns work by just taking the querystring parameter `wlc` if present in querystring and records
@@ -270,7 +270,6 @@ people click on the ad, and signup, `c1` will be added to their entry and is vie
 
 Referrals work the same as campaigns but work automatically.  If there a value in `request.META["HTTP_REFERER"]`
 when landing on the signup page, the value will get required in the `referral` field of the waitinglist entry.
-
 
 ### Reference
 
@@ -387,6 +386,7 @@ and ping us there instead of creating an issue on GitHub. Creating issues on Git
 also valid but we are usually able to help you faster if you ping us in Slack.
 
 We also highly recommend reading our blog post on [Open Source and Self-Care](http://blog.pinaxproject.com/2016/01/19/open-source-and-self-care/).
+
 
 ## Code of Conduct
 
