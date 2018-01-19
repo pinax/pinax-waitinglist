@@ -61,7 +61,7 @@ Django \ Python | 2.7 | 3.4 | 3.5 | 3.6
 
 Install the development version:
 
-```commandline
+```shell
 $ pip install pinax-waitinglist
 ```
 
@@ -76,7 +76,7 @@ INSTALLED_APPS = (
 
 Run migrations:
 
-```commandline
+```shell
 $ python manage.py migrate
 ```
 
@@ -138,7 +138,7 @@ TEMPLATES = [
 
 Add `list_signup.html` template:
 
-```djangotemplate
+```django
 <!-- templates/waitinglist/list_signup.html -->
 
 <div class="site-wrapper-inner">
@@ -172,7 +172,7 @@ Add `list_signup.html` template:
 
 Add a success template `success.html`:
 
-```djangotemplate
+```django
 <!-- templates/waitinglist/success.html -->
 
 <div class="site-wrapper-inner">
@@ -208,7 +208,7 @@ A survey will need to be created with one or more questions. Surveys and their q
 
 Add `survey.html` template:
 
-```djangotemplate
+```django
 <!-- templates/waitinglist/survey.html -->
 
 <div class="site-wrapper-inner">
@@ -240,7 +240,7 @@ A `SITE` object is passed to both of the following templates, if you haven't ena
 
 Add `survey_invite_subject.txt` template:
 
-```djangotemplate
+```django
     {# templates/waitinglist/survey_invite_subject.txt #}
 
     Survey from {{ site.name }}
@@ -248,7 +248,7 @@ Add `survey_invite_subject.txt` template:
 
 Add `survey_invite_body.txt` template:
 
-```djangotemplate
+```django
     {# templates/waitinglist/survey_invite_body.txt #}
 
     Please take a moment to complete a brief survey from Example.com:
@@ -257,7 +257,7 @@ Add `survey_invite_body.txt` template:
 
 Send survey emails:
 
-```commandline
+```shell
 $ python manage.py mail_out_survey_links
 ```
 
