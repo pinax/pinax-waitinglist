@@ -21,8 +21,8 @@
   * [Supported Django and Python versions](#supported-django-and-python-versions)
 * [Documentation](#documentation)
   * [Installation](#installation)
-  * [Settings](#settings)
   * [Usage](#usage)
+  * [Settings](#settings)
   * [Reference](#reference)  
 * [Change Log](#change-log)
 * [Contribute](#contribute)
@@ -88,20 +88,6 @@ urlpatterns = [
     url(r"^waitinglist/", include("pinax.waitinglist.urls", namespace="pinax_waitinglist")),
 ]
 ```
-
-### Settings
-
-#### WAITINGLIST_SURVEY_SECRET
-
-Defaults to `SECRET_KEY`
-
-This is used for generating the hash for `pinax.waitinglist.models.SurveyInstance.code`.
-
-#### DEFAULT_HTTP_PROTOCOL
-
-Defaults to `HTTP`
-
-Provided as context in certain emails for URL building.
 
 ### Usage
 
@@ -205,7 +191,6 @@ A survey will need to be created with one or more questions. Surveys and their q
     # Add questions to an existing survey
     /admin/waitinglist/surveyquestion/
 
-
 Add `survey.html` template:
 
 ```django
@@ -270,6 +255,20 @@ people click on the ad, and signup, `c1` will be added to their entry and is vie
 
 Referrals work the same as campaigns but work automatically.  If there a value in `request.META["HTTP_REFERER"]`
 when landing on the signup page, the value will get required in the `referral` field of the waitinglist entry.
+
+### Settings
+
+#### WAITINGLIST_SURVEY_SECRET
+
+Defaults to `SECRET_KEY`
+
+This is used for generating the hash for `pinax.waitinglist.models.SurveyInstance.code`.
+
+#### DEFAULT_HTTP_PROTOCOL
+
+Defaults to `HTTP`
+
+Provided as context in certain emails for URL building.
 
 ### Reference
 
