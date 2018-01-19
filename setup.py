@@ -30,12 +30,11 @@ Pinax Waiting List
 .. image:: http://slack.pinaxproject.com/badge.svg
     :target: http://slack.pinaxproject.com/
 .. image:: https://img.shields.io/badge/license-MIT-blue.svg
-    :target: https://pypi.python.org/pypi/pinax-waitinglist/
+    :target: https://opensource.org/licenses/MIT/
 
 \ 
 
 ``pinax-waitinglist`` is a waiting list app for Django sites.
-
 
 Supported Django and Python Versions
 ------------------------------------
@@ -48,7 +47,6 @@ Supported Django and Python Versions
 | 2.0             |     |  *  |  *  |  *  |
 +-----------------+-----+-----+-----+-----+
 """
-
 
 setup(
     author="Pinax Team",
