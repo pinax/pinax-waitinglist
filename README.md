@@ -282,39 +282,45 @@ Uses templates `waitinglist/survey_invite_subject.txt` & `waitinglist/survey_inv
 
 #### Templates
 
-All the templates for this app should be located in the subfolder `waitinglist/` in your template search path.
+Templates for this app should be located in the subfolder `pinax/waitinglist/` in your template search path.
 
-##### waitinglist/_list_signup.html
+##### `_list_signup.html`
 
 Rendered by `ajax_list_signup` view when form is not valid and gets passed `form` (`WaitingListEntryForm`) in context.
 
-##### waitinglist/_success.html
+##### `_success.html`
 
 Rendered by `ajax_list_signup` view when form is valid.
 
-##### waitinglist/list_signup.html
+
+#### User-Provided Templates
+
+Create these templates in a `pinax/waitinglist/` subfolder in your template search path.
+
+##### `list_signup.html`
 
 Rendered by `list_signup` view and gets passed `form` (`WaitingListEntryForm`) in context.
 
-##### waitinglist/success.html
+##### `success.html`
 
 Rendered by `django.views.generic.TemplateView`.
 
-##### waitinglist/survey.html
+##### `survey.html`
 
 Rendered by `survey` view when request method is `GET` and gets passed `form` (`SurveyForm`) in context.
 
-##### waitinglist/survey_invite_body.txt
+##### `survey_invite_body.txt`
 
 Rendered by `mail_out_survey_links` command and gets passed `instance` (`SurveyInstance` instance), `site` (`Site` instance) and `protocol` (`DEFAULT_HTTP_PROTOCOL` setting).
 
-##### waitinglist/survey_invite_subject.txt
+##### `survey_invite_subject.txt`
 
 Rendered by `mail_out_survey_links` command and gets passed `instance` (`SurveyInstance` instance), `site` (`Site` instance) and `protocol` (`DEFAULT_HTTP_PROTOCOL` setting).
 
-##### waitinglist/thanks.html
+##### `thanks.html`
 
-Rendered by `django.views.generic.TemplateView`.
+Rendered by `django.views.generic.TemplateView` after successfully adding user to waiting list.
+
 
 #### Signals
 
@@ -332,6 +338,10 @@ Provides argument `entry` (`WaitingListEntry` instance).
 
 
 ## Change Log
+
+### 2.0.3
+
+* fix setup.py `package_data` reference for included templates
 
 ### 2.0.2
 
