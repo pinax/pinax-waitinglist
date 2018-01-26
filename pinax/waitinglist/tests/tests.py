@@ -175,47 +175,42 @@ class SurveyViewTests(SurveyTestCase):
         self.assertInContext("form")
         self.assertFalse(response.context["form"].is_valid())
 
-#    def test_ajax_list_signup(self):
-#        """
-#        Ensure email address is added to waiting list via AJAX post.
-#        """
-#        post_data = {
-#            "email": self.email,
-#        }
-#        self.post(
-#            self.signup_urlname,
-#            data=post_data,
-#            extra=dict(HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-#        )
-#        self.response_200()
-#        self.assertTrue(WaitingListEntry.objects.filter(email=self.email))
-#
-#    def test_ajax_list_signup_duplicate(self):
-#        """
-#        Ensure email address already in waiting list is rejected via AJAX.
-#        """
-#        post_data = {
-#            "email": self.email,
-#        }
-#        response = self.post(
-#            self.signup_urlname,
-#            data=post_data,
-#            extra=dict(HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-#        )
-#        try:
-#            WaitingListEntry.objects.get(email=self.email)
-#        except WaitingListEntry.DoesNotExist:
-#            raise
-#        self.response_200()
-#
-#        # Form should not validate if we add same email address again.
-#        response = self.post(
-#            self.signup_urlname,
-#            data=post_data,
-#            extra=dict(HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-#        )
-#        self.response_200()
-#        # Check JSON response for failure indicator and form error.
+    def test_ajax_list_signup(self):
+        """
+        Ensure email address is added to waiting list via AJAX post.
+        """
+        post_data = {
+            "email": self.email,
+        }
+        self.post(
+            "pinax_waitinglist:ajax_list_signup",
+            data=post_data,
+            extra=dict(HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        )
+        self.response_200()
+        self.assertTrue(WaitingListEntry.objects.filter(email=self.email))
+
+    def test_ajax_list_signup_duplicate(self):
+        """
+        Ensure email address already in waiting list is rejected via AJAX.
+        """
+        post_data = {
+            "email": self.email,
+        }
+        response = self.post(
+            "pinax_waitinglist:ajax_list_signup",
+            data=post_data,
+            extra=dict(HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        )
+
+        # Form should not validate if we add same email address again.
+        response = self.post(
+            self.signup_urlname,
+            data=post_data,
+            extra=dict(HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        )
+        self.response_200()
+        # Check JSON response for failure indicator and form error.
 
     def test_get_survey(self):
         """
@@ -253,15 +248,3 @@ class SurveyViewTests(SurveyTestCase):
             SurveyAnswer.objects.filter(instance=self.entry.surveyinstance).count(),
             5
         )
-
-class ViewTests(TestCase):
-    
-    def test_list_signup(self):
-        """verify no errors when posting good form data"""
-        user = self.make_user("amy")
-        post_data = {
-            "email_address": "amy@example.com"
-        }
-        with self.login(user):
-            self.post("pinax_waitinglist:ajax_list_signup", data=post_data)
-            self.response_200()
