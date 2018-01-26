@@ -205,7 +205,7 @@ class SurveyViewTests(SurveyTestCase):
 
         # Form should not validate if we add same email address again.
         response = self.post(
-            self.signup_urlname,
+            "pinax_waitinglist:ajax_list_signup",
             data=post_data,
             extra=dict(HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         )
