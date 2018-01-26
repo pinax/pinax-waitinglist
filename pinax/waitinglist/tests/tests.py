@@ -253,3 +253,15 @@ class SurveyViewTests(SurveyTestCase):
             SurveyAnswer.objects.filter(instance=self.entry.surveyinstance).count(),
             5
         )
+
+class ViewTests(TestCase):
+    
+    def test_list_signup(self):
+        """verify no errors when posting good form data"""
+        user = self.make_user("amy")
+        post_data = {
+            "email_address": "amy@example.com"
+        }
+        with self.login(user):
+            self.post("pinax_waitinglist:ajax_list_signup", data=post_data)
+            self.response_200()
