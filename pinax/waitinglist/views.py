@@ -23,13 +23,13 @@ def ajax_list_signup(request):
         except SurveyInstance.DoesNotExist:
             data = {
                 "html": render_to_string("pinax/waitinglist/_success.html", {
-                }, context_instance=RequestContext(request))
+                }, request=self.request)
             }
     else:
         data = {
             "html": render_to_string("pinax/waitinglist/_list_signup.html", {
                 "form": form,
-            }, context_instance=RequestContext(request))
+            }, request=self.request)
         }
     return JsonResponse(data)
 
