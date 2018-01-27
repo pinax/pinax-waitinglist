@@ -282,7 +282,25 @@ Uses templates `waitinglist/survey_invite_subject.txt` & `waitinglist/survey_inv
 
 #### Templates
 
-Templates for this app should be located in the subfolder `pinax/waitinglist/` in your template search path.
+Default templates are provided by the `pinax-templates` app in the
+[waitinglist](https://github.com/pinax/pinax-templates/tree/master/pinax/templates/templates/pinax/waitinglist)
+section of that project.
+
+Reference pinax-templates
+[installation instructions](https://github.com/pinax/pinax-templates/blob/master/README.md#installation)
+to include these templates in your project.
+
+##### Customizing Templates
+
+Override the default `pinax-templates` templates by copying them into your project
+subdirectory `pinax/waitinglist/` on the template path and modifying as needed.
+
+For example if your project doesn't use Bootstrap, copy the desired templates
+then remove Bootstrap and Font Awesome class names from your copies.
+Remove class references like `class="btn btn-success"` and `class="icon icon-pencil"` as well as
+`bootstrap` from the `{% load i18n bootstrap %}` statement.
+Since `bootstrap` template tags and filters are no longer loaded, you'll also need to update
+`{{ form|bootstrap }}` to `{{ form }}` since the "bootstrap" filter is no longer available.
 
 ##### `_list_signup.html`
 
@@ -341,7 +359,9 @@ Provides argument `entry` (`WaitingListEntry` instance).
 
 ### 2.0.3
 
-* fix setup.py `package_data` reference for included templates
+* Fix render_to_string `context_instances` kwarg 
+* Fix setup.py `package_data` reference for included templates
+* Add pinax-templates support
 
 ### 2.0.2
 

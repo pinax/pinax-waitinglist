@@ -13,8 +13,11 @@ DEFAULT_SETTINGS = dict(
         "django.contrib.contenttypes",
         "django.contrib.sessions",
         "django.contrib.sites",
+
+        "bootstrapform",
+        "pinax.templates",
         "pinax.waitinglist",
-        "pinax.waitinglist.tests"
+        "pinax.waitinglist.tests",
     ],
     DATABASES={
         "default": {
