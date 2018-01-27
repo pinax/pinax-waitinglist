@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-VERSION = "2.0.2"
+VERSION = "2.0.3"
 LONG_DESCRIPTION = """
 .. image:: http://pinaxproject.com/pinax-design/patches/pinax-waitinglist.svg
     :target: https://pypi.python.org/pypi/pinax-waitinglist/
@@ -64,13 +64,6 @@ setup(
             "templates/waitinglist/_success.html"
         ]
     },
-    test_suite="runtests.runtests",
-    tests_require=[
-        "django-test-plus>=1.0.22",
-    ],
-    install_requires=[
-        "django>=1.11",
-    ],    
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Environment :: Web Environment",
@@ -88,6 +81,14 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         "Topic :: Software Development :: Libraries :: Python Modules",
+    ],
+    install_requires=[
+        "django>=1.11",
+    ],
+    test_suite="runtests.runtests",
+    tests_require=[
+        "django-test-plus>=1.0.22",
+        "pinax-templates>=1.0.3",
     ],
     zip_safe=False
 )

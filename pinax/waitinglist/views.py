@@ -1,5 +1,4 @@
 from django.http import HttpResponseRedirect, JsonResponse
-from django.template import RequestContext
 from django.template.loader import render_to_string
 from django.urls import reverse, reverse_lazy
 from django.views.decorators.http import require_POST
@@ -23,13 +22,13 @@ def ajax_list_signup(request):
         except SurveyInstance.DoesNotExist:
             data = {
                 "html": render_to_string("pinax/waitinglist/_success.html", {
-                }, context_instance=RequestContext(request))
+                }, request=request)
             }
     else:
         data = {
             "html": render_to_string("pinax/waitinglist/_list_signup.html", {
                 "form": form,
-            }, context_instance=RequestContext(request))
+            }, request=request)
         }
     return JsonResponse(data)
 
