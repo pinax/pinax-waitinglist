@@ -185,7 +185,7 @@ class SurveyViewTests(SurveyTestCase):
         self.post(
             "pinax_waitinglist:ajax_list_signup",
             data=post_data,
-            extra=dict(HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+            extra=dict(HTTP_X_REQUESTED_WITH="XMLHttpRequest")
         )
         self.response_200()
         self.assertTrue(WaitingListEntry.objects.filter(email=self.email))
@@ -197,17 +197,17 @@ class SurveyViewTests(SurveyTestCase):
         post_data = {
             "email": self.email,
         }
-        response = self.post(
+        self.post(
             "pinax_waitinglist:ajax_list_signup",
             data=post_data,
-            extra=dict(HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+            extra=dict(HTTP_X_REQUESTED_WITH="XMLHttpRequest")
         )
 
         # Form should not validate if we add same email address again.
-        response = self.post(
+        self.post(
             "pinax_waitinglist:ajax_list_signup",
             data=post_data,
-            extra=dict(HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+            extra=dict(HTTP_X_REQUESTED_WITH="XMLHttpRequest")
         )
         self.response_200()
         # Check JSON response for failure indicator and form error.
