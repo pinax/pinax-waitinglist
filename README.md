@@ -312,7 +312,6 @@ Rendered by `ajax_list_signup` view when form is not valid and gets passed `form
 
 Rendered by `ajax_list_signup` view when form is valid.
 
-
 #### User-Provided Templates
 
 Create these templates in a `pinax/waitinglist/` subfolder in your template search path.
@@ -340,7 +339,6 @@ Rendered by `mail_out_survey_links` command and gets passed `instance` (`SurveyI
 ##### `thanks.html`
 
 Rendered by `django.views.generic.TemplateView` after successfully adding user to waiting list.
-
 
 #### Signals
 
