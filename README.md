@@ -59,19 +59,19 @@ Django \ Python | 2.7 | 3.4 | 3.5 | 3.6
 
 ### Installation
 
-Install the development version:
+To install pinax-waitinglist:
 
 ```shell
 $ pip install pinax-waitinglist
 ```
 
-Add `pinax-waitinglist` to your `INSTALLED_APPS` setting:
+Add `pinax.waitinglist` to your `INSTALLED_APPS` setting:
 
 ```python
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     # other apps
     "pinax.waitinglist",
-)
+]
 ```
 
 Run migrations:
