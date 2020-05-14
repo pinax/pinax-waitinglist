@@ -32,7 +32,7 @@ class WaitingListEntryForm(forms.ModelForm):
             )
 
     def __init__(self, *args, **kwargs):
-        super(WaitingListEntryForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.fields["email"].widget.attrs["placeholder"] = "your@email.com"
         self.fields["email"].label = ""
 
@@ -48,7 +48,7 @@ class SurveyForm(forms.ModelForm):
         Build form fields on the fly.
         """
         self.survey = kwargs.pop("survey")
-        super(SurveyForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         for question in self.survey.questions.all():
             self.fields[question.name] = question.form_field()
 

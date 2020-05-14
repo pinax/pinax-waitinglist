@@ -6,13 +6,11 @@ from django.db import models
 from django.db.models import Max
 from django.template.defaultfilters import slugify
 from django.utils import timezone
-from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
 SURVEY_SECRET = getattr(settings, "WAITINGLIST_SURVEY_SECRET", settings.SECRET_KEY)
 
 
-@python_2_unicode_compatible
 class WaitingListEntry(models.Model):
 
     email = models.EmailField(_("email address"), unique=True)
@@ -28,7 +26,6 @@ class WaitingListEntry(models.Model):
         return self.email
 
 
-@python_2_unicode_compatible
 class Survey(models.Model):
 
     label = models.CharField(max_length=100, unique=True)
@@ -40,7 +37,7 @@ class Survey(models.Model):
     def save(self, *args, **kwargs):
         if self.active:
             Survey.objects.filter(active=True).update(active=False)
-        return super(Survey, self).save(*args, **kwargs)
+        return super().save(*args, **kwargs)
 
 
 class SurveyInstance(models.Model):
@@ -54,7 +51,7 @@ class SurveyInstance(models.Model):
 
     def save(self, *args, **kwargs):
         self.code = self.generate_hash()
-        return super(SurveyInstance, self).save(*args, **kwargs)
+        return super().save(*args, **kwargs)
 
 
 class SurveyQuestion(models.Model):
@@ -118,10 +115,9 @@ class SurveyQuestion(models.Model):
                 Max("ordinal")
             )["ordinal__max"] or 0
             self.ordinal = max_ordinal + 1
-        return super(SurveyQuestion, self).save(*args, **kwargs)
+        return super().save(*args, **kwargs)
 
 
-@python_2_unicode_compatible
 class SurveyQuestionChoice(models.Model):
     question = models.ForeignKey(SurveyQuestion, related_name="choices", on_delete=models.CASCADE)
     label = models.CharField(max_length=100)
