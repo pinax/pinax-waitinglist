@@ -1,7 +1,7 @@
 import hashlib
 
 from django import forms
-from django.conf import settings
+from django.conf import settings  # noqa
 from django.db import models
 from django.db.models import Max
 from django.template.defaultfilters import slugify

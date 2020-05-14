@@ -8,7 +8,7 @@ from .models import (
     SurveyInstance,
     SurveyQuestion,
     SurveyQuestionChoice,
-    WaitingListEntry
+    WaitingListEntry,
 )
 
 
