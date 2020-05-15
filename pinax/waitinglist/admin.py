@@ -23,7 +23,7 @@ class WaitingListEntryAdmin(admin.ModelAdmin):
 
         fieldnames = ["email", "created"]
 
-        csv_response = self.make_csv(queryset,fieldnames)
+        csv_response = self.make_csv(queryset, fieldnames)
 
         return csv_response
 

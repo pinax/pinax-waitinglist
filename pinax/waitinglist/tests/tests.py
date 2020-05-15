@@ -251,8 +251,10 @@ class SurveyViewTests(SurveyTestCase):
             5
         )
 
+
 class MockRequest(object):
     pass
+
 
 class WaitingListEntryAdminCSVTest(TestCase):
 
