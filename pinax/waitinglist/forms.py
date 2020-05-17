@@ -25,10 +25,10 @@ class WaitingListEntryForm(forms.ModelForm):
             return value
         else:
             raise forms.ValidationError(
-                "The email address %(email)s already registered on %(date)s." % {
-                    "email": value,
-                    "date": entry.created.strftime("%m/%d/%y"),
-                }
+                "The email address {email} already registered on {date}.".format(
+                    email=value,
+                    date=entry.created.strftime("%m/%d/%y"),
+                )
             )
 
     def __init__(self, *args, **kwargs):
