@@ -1,7 +1,9 @@
 from django.urls import reverse
+from django.contrib.admin.sites import AdminSite
 
 from ..forms import SurveyForm
 from ..models import Survey, SurveyAnswer, SurveyQuestion, WaitingListEntry
+from ..admin import WaitingListEntryAdmin
 from .test import TestCase
 
 
@@ -248,3 +250,26 @@ class SurveyViewTests(SurveyTestCase):
             SurveyAnswer.objects.filter(instance=self.entry.surveyinstance).count(),
             5
         )
+
+
+class MockRequest(object):
+    pass
+
+
+class WaitingListEntryAdminCSVTest(TestCase):
+
+    def setUp(self):
+        self.request = MockRequest()
+        self.waitinglist_entry_admin = WaitingListEntryAdmin(WaitingListEntry, AdminSite())
+        self.entry = WaitingListEntry.objects.create(email="pinax@awesome.com")
+
+    def test_content_type(self):
+        queryset = WaitingListEntry.objects.filter(pk=1)
+        csv = self.waitinglist_entry_admin.export_waitinglist_entries(self.request, queryset)
+        self.assertEqual(csv["Content-Type"], "text/csv")
+
+    def test_csv_data(self):
+        queryset = WaitingListEntry.objects.filter(pk=1)
+        csv = self.waitinglist_entry_admin.export_waitinglist_entries(self.request, queryset)
+        self.assertIn(b"email,created", csv.content)
+        self.assertIn(b"pinax@awesome.com", csv.content)

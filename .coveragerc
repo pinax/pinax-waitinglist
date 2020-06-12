@@ -1,7 +1,0 @@
-[run]
-source = pinax
-omit = pinax/waitinglist/tests/*,pinax/waitinglist/admin.py
-branch = 1
-
-[report]
-omit = pinax/waitinglist/tests/*,pinax/waitinglist/admin.py

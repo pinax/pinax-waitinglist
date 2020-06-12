@@ -42,7 +42,7 @@ class ListSignupView(CreateView):
     template_name = "pinax/waitinglist/list_signup.html"
 
     def get_initial(self):
-        initial = super(ListSignupView, self).get_initial()
+        initial = super().get_initial()
         initial.update({
             "referrer": self.request.META.get("HTTP_REFERER", ""),
             "campaign": self.request.GET.get("wlc", "")
@@ -84,7 +84,7 @@ class SurveyView(UpdateView):
     success_url = reverse_lazy("pinax_waitinglist:survey_thanks")
 
     def get_form_kwargs(self):
-        kwargs = super(SurveyView, self).get_form_kwargs()
+        kwargs = super().get_form_kwargs()
         kwargs.update({"survey": self.object.survey})
         return kwargs
 

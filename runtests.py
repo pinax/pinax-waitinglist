@@ -9,15 +9,22 @@ from django.conf import settings
 
 DEFAULT_SETTINGS = dict(
     INSTALLED_APPS=[
+        "django.contrib.admin",
         "django.contrib.auth",
         "django.contrib.contenttypes",
         "django.contrib.sessions",
+        "django.contrib.messages",
         "django.contrib.sites",
 
         "bootstrapform",
         "pinax.templates",
         "pinax.waitinglist",
         "pinax.waitinglist.tests",
+    ],
+    MIDDLEWARE=[
+        "django.contrib.sessions.middleware.SessionMiddleware",
+        "django.contrib.auth.middleware.AuthenticationMiddleware",
+        "django.contrib.messages.middleware.MessageMiddleware",
     ],
     DATABASES={
         "default": {
@@ -36,12 +43,12 @@ DEFAULT_SETTINGS = dict(
                 "debug": True,
                 "context_processors": [
                     "django.contrib.auth.context_processors.auth",
+                    "django.contrib.messages.context_processors.messages",
                 ]
             }
         },
     ]
 )
-
 
 def runtests(*test_args):
     if not settings.configured:

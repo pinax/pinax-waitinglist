@@ -25,14 +25,14 @@ class WaitingListEntryForm(forms.ModelForm):
             return value
         else:
             raise forms.ValidationError(
-                "The email address %(email)s already registered on %(date)s." % {
-                    "email": value,
-                    "date": entry.created.strftime("%m/%d/%y"),
-                }
+                "The email address {email} already registered on {date}.".format(
+                    email=value,
+                    date=entry.created.strftime("%m/%d/%y"),
+                )
             )
 
     def __init__(self, *args, **kwargs):
-        super(WaitingListEntryForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.fields["email"].widget.attrs["placeholder"] = "your@email.com"
         self.fields["email"].label = ""
 
@@ -48,7 +48,7 @@ class SurveyForm(forms.ModelForm):
         Build form fields on the fly.
         """
         self.survey = kwargs.pop("survey")
-        super(SurveyForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         for question in self.survey.questions.all():
             self.fields[question.name] = question.form_field()
 
