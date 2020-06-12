@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 
-VERSION = "3.0.0"
-LONG_DESCRIPTION = r"""
+VERSION = "3.0.1"
+LONG_DESCRIPTION = """
 .. image:: http://pinaxproject.com/pinax-design/patches/pinax-waitinglist.svg
     :target: https://pypi.python.org/pypi/pinax-waitinglist/
 
